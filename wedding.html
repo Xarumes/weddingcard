@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Влад & Диана — Свадебное приглашение</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f5e9d0;}
+.wrap{
+  background:linear-gradient(160deg,#fdf6e3 0%,#f9ead0 40%,#fdf6e3 100%);
+  min-height:100vh;
+  padding:20px 0 40px;
+  position:relative;
+  overflow:hidden;
+  font-family:'Cormorant Garamond',serif;
+}
+.bg-pattern{position:absolute;inset:0;opacity:0.07;pointer-events:none;}
+.card{max-width:480px;margin:0 auto;padding:16px 20px;position:relative;z-index:2;}
+.frame-outer{
+  border:2px solid #c9933a;
+  border-radius:4px;
+  padding:6px;
+  background:rgba(255,248,230,0.6);
+  position:relative;
+}
+.frame-inner{
+  border:1px solid #e8c068;
+  border-radius:2px;
+  padding:28px 24px 24px;
+  background:rgba(255,252,240,0.85);
+}
+.corner{position:absolute;width:28px;height:28px;pointer-events:none;}
+.corner svg{width:100%;height:100%;}
+.c-tl{top:-2px;left:-2px}
+.c-tr{top:-2px;right:-2px;transform:rotate(90deg)}
+.c-bl{bottom:-2px;left:-2px;transform:rotate(-90deg)}
+.c-br{bottom:-2px;right:-2px;transform:rotate(180deg)}
+.label-top{text-align:center;font-size:10px;letter-spacing:3px;color:#a07830;text-transform:uppercase;margin-bottom:6px;}
+.arabic-text{text-align:center;font-size:18px;color:#7a5520;margin-bottom:2px;letter-spacing:1px;line-height:1.4;}
+.dear-guest{text-align:center;font-size:13px;color:#8a6535;font-style:italic;margin-bottom:6px;}
+.names{
+  text-align:center;font-family:'Playfair Display',serif;font-size:42px;color:#7a3a10;line-height:1.1;margin-bottom:4px;
+  animation:names-glow 3s ease-in-out infinite;
+}
+@keyframes names-glow{
+  0%,100%{text-shadow:0 0 12px rgba(201,147,58,0.3)}
+  50%{text-shadow:0 0 24px rgba(201,147,58,0.7),0 2px 8px rgba(122,58,16,0.2)}
+}
+.ampersand{color:#c9933a;font-style:italic;}
+.invitation-text{text-align:center;font-size:14px;font-style:italic;color:#6b4c2a;line-height:1.7;margin:12px 0 16px;}
+.stars-row{text-align:center;margin:10px 0;height:24px;position:relative;overflow:hidden;}
+.star-anim{display:inline-block;color:#c9933a;font-size:14px;animation:float-star 2s ease-in-out infinite;}
+.star-anim:nth-child(1){animation-delay:0s}
+.star-anim:nth-child(2){animation-delay:0.3s}
+.star-anim:nth-child(3){animation-delay:0.6s}
+.star-anim:nth-child(4){animation-delay:0.9s}
+.star-anim:nth-child(5){animation-delay:1.2s}
+.star-anim:nth-child(6){animation-delay:0.15s}
+.star-anim:nth-child(7){animation-delay:0.45s}
+@keyframes float-star{
+  0%,100%{transform:translateY(0) scale(1);opacity:0.7}
+  50%{transform:translateY(-6px) scale(1.3);opacity:1}
+}
+.countdown-block{
+  background:linear-gradient(135deg,rgba(201,147,58,0.12),rgba(201,147,58,0.05));
+  border:1px solid #d4a84b;border-radius:6px;padding:16px 12px 12px;margin:16px 0;position:relative;overflow:hidden;
+}
+.countdown-block::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,#c9933a,transparent);
+  animation:shimmer 2s ease-in-out infinite;
+}
+@keyframes shimmer{0%,100%{opacity:0.5}50%{opacity:1}}
+.countdown-label{text-align:center;font-size:9px;letter-spacing:3px;color:#a07830;text-transform:uppercase;margin-bottom:12px;}
+.countdown-grid-wrap{display:flex;align-items:flex-start;gap:4px;justify-content:center;}
+.cd-unit{text-align:center;}
+.cd-num{
+  font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#7a3a10;line-height:1;display:block;
+}
+.cd-num.tick{animation:tick-anim 0.4s ease;}
+@keyframes tick-anim{0%{transform:translateY(-4px);opacity:0.5}100%{transform:translateY(0);opacity:1}}
+.cd-sep{font-family:'Playfair Display',serif;font-size:28px;color:#c9933a;align-self:flex-start;padding-top:4px;animation:blink-sep 1s step-end infinite;}
+@keyframes blink-sep{0%,100%{opacity:1}50%{opacity:0.2}}
+.cd-unit-label{font-size:9px;letter-spacing:2px;color:#a07830;text-transform:uppercase;margin-top:4px;display:block;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
+.info-card{
+  background:rgba(255,248,225,0.7);border:1px solid #d4a84b;border-radius:8px 8px 4px 4px;
+  padding:14px 10px 12px;text-align:center;position:relative;overflow:hidden;
+}
+.info-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,#c9933a,#e8c068,#c9933a);
+  animation:slide-gold 3s ease-in-out infinite;
+}
+@keyframes slide-gold{0%{background-position:0%}100%{background-position:200%}}
+.info-icon{font-size:20px;margin-bottom:6px;animation:pulse-icon 2s ease-in-out infinite;display:block;}
+@keyframes pulse-icon{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+.info-card-label{font-size:8px;letter-spacing:2.5px;color:#a07830;text-transform:uppercase;margin-bottom:6px;}
+.info-card-value{font-size:14px;color:#5c3d1a;font-family:'Playfair Display',serif;line-height:1.5;}
+.venue-block{
+  background:rgba(255,248,225,0.7);border:1px solid #d4a84b;border-radius:8px 8px 4px 4px;
+  padding:16px 16px 14px;text-align:center;margin:10px 0;position:relative;overflow:hidden;
+}
+.venue-block::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,#c9933a,#e8c068,#c9933a);
+  animation:slide-gold 3s ease-in-out infinite reverse;
+}
+.venue-icon{font-size:20px;margin-bottom:6px;animation:pulse-icon 2.5s ease-in-out infinite;display:block;}
+.venue-label{font-size:8px;letter-spacing:2.5px;color:#a07830;text-transform:uppercase;margin-bottom:8px;}
+.venue-name{font-size:16px;color:#5c3d1a;font-family:'Playfair Display',serif;font-weight:700;}
+.venue-addr{font-size:13px;color:#7a5520;margin-top:4px;}
+.footer-text{
+  text-align:center;font-size:13px;font-style:italic;color:#8a6535;
+  margin-top:18px;padding-top:14px;border-top:1px solid rgba(201,147,58,0.3);
+  animation:footer-fade 3s ease-in-out infinite;
+}
+@keyframes footer-fade{0%,100%{opacity:0.7}50%{opacity:1}}
+.moon-row{text-align:center;margin:6px 0;color:#c9933a;font-size:22px;animation:sway 4s ease-in-out infinite;}
+@keyframes sway{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+.geo-divider{text-align:center;margin:8px 0;}
+.particle{
+  position:fixed;pointer-events:none;font-size:12px;color:rgba(201,147,58,0.5);
+  animation:float-particle linear infinite;
+}
+@keyframes float-particle{
+  0%{transform:translateY(100vh) rotate(0deg);opacity:0}
+  10%{opacity:1}
+  90%{opacity:0.5}
+  100%{transform:translateY(-100px) rotate(360deg);opacity:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap" id="main-wrap">
+  <div id="particles"></div>
+
+  <svg class="bg-pattern" viewBox="0 0 480 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%">
+    <defs>
+      <pattern id="uzbek" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+        <rect width="80" height="80" fill="none"/>
+        <polygon points="40,5 47,27 70,20 53,37 70,55 47,48 40,70 33,48 10,55 27,37 10,20 33,27" fill="none" stroke="#c9933a" stroke-width="0.8"/>
+        <rect x="28" y="28" width="24" height="24" fill="none" stroke="#c9933a" stroke-width="0.5" transform="rotate(45 40 40)"/>
+        <circle cx="40" cy="40" r="2" fill="#c9933a" opacity="0.6"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#uzbek)"/>
+  </svg>
+
+  <div class="card">
+    <div class="frame-outer">
+      <div class="corner c-tl"><svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg"><path d="M2 26 L2 8 Q2 2 8 2 L26 2" stroke="#c9933a" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="8" cy="8" r="3" fill="#c9933a"/><path d="M2 14 L8 8 L14 2" stroke="#e8c068" stroke-width="1" fill="none" stroke-dasharray="2,2"/></svg></div>
+      <div class="corner c-tr"><svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg"><path d="M2 26 L2 8 Q2 2 8 2 L26 2" stroke="#c9933a" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="8" cy="8" r="3" fill="#c9933a"/><path d="M2 14 L8 8 L14 2" stroke="#e8c068" stroke-width="1" fill="none" stroke-dasharray="2,2"/></svg></div>
+      <div class="corner c-bl"><svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg"><path d="M2 26 L2 8 Q2 2 8 2 L26 2" stroke="#c9933a" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="8" cy="8" r="3" fill="#c9933a"/><path d="M2 14 L8 8 L14 2" stroke="#e8c068" stroke-width="1" fill="none" stroke-dasharray="2,2"/></svg></div>
+      <div class="corner c-br"><svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg"><path d="M2 26 L2 8 Q2 2 8 2 L26 2" stroke="#c9933a" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="8" cy="8" r="3" fill="#c9933a"/><path d="M2 14 L8 8 L14 2" stroke="#e8c068" stroke-width="1" fill="none" stroke-dasharray="2,2"/></svg></div>
+
+      <div class="frame-inner">
+        <div class="moon-row">☪️</div>
+        <div class="label-top">Свадебное приглашение</div>
+        <div class="arabic-text">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْم</div>
+        <div class="dear-guest">Дорогой Гость,</div>
+
+        <div class="names">Влад <span class="ampersand">&amp;</span> Диана</div>
+
+        <div class="stars-row">
+          <span class="star-anim">✦</span>
+          <span class="star-anim">✧</span>
+          <span class="star-anim">✦</span>
+          <span class="star-anim">✦</span>
+          <span class="star-anim">✧</span>
+          <span class="star-anim">✦</span>
+          <span class="star-anim">✧</span>
+        </div>
+
+        <div class="invitation-text">
+          С огромной радостью и любовью<br>
+          приглашаем вас разделить с нами<br>
+          этот особенный день нашей жизни
+        </div>
+
+        <div class="geo-divider">
+          <svg width="260" height="20" viewBox="0 0 260 20" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="10" x2="90" y2="10" stroke="#c9933a" stroke-width="0.8"/>
+            <polygon points="105,10 115,4 125,10 115,16" fill="none" stroke="#c9933a" stroke-width="1"/>
+            <circle cx="130" cy="10" r="3" fill="#c9933a"/>
+            <polygon points="135,10 145,4 155,10 145,16" fill="none" stroke="#c9933a" stroke-width="1"/>
+            <line x1="170" y1="10" x2="260" y2="10" stroke="#c9933a" stroke-width="0.8"/>
+          </svg>
+        </div>
+
+        <div class="countdown-block">
+          <div class="countdown-label">До свадьбы осталось</div>
+          <div class="countdown-grid-wrap">
+            <div class="cd-unit">
+              <span class="cd-num" id="cd-days">458</span>
+              <span class="cd-unit-label">дней</span>
+            </div>
+            <div class="cd-sep">:</div>
+            <div class="cd-unit">
+              <span class="cd-num" id="cd-hours">00</span>
+              <span class="cd-unit-label">часов</span>
+            </div>
+            <div class="cd-sep">:</div>
+            <div class="cd-unit">
+              <span class="cd-num" id="cd-mins">00</span>
+              <span class="cd-unit-label">минут</span>
+            </div>
+            <div class="cd-sep">:</div>
+            <div class="cd-unit">
+              <span class="cd-num" id="cd-secs">00</span>
+              <span class="cd-unit-label">секунд</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <span class="info-icon">🌙</span>
+            <div class="info-card-label">Дата</div>
+            <div class="info-card-value">20 сентября<br>2027 года</div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">✨</span>
+            <div class="info-card-label">Время</div>
+            <div class="info-card-value">Никах — 14:00<br>Банкет — 18:00</div>
+          </div>
+        </div>
+
+        <div class="venue-block">
+          <span class="venue-icon">🕌</span>
+          <div class="venue-label">Место проведения</div>
+          <div class="venue-name">Свадебный зал «Жемчужина»</div>
+          <div class="venue-addr">ул. Навои 12, Ташкент</div>
+        </div>
+
+        <div class="footer-text">Ваше присутствие — лучший подарок для нас ✦</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const wedding = new Date('2027-09-20T14:00:00');
+  const days = document.getElementById('cd-days');
+  const hours = document.getElementById('cd-hours');
+  const mins = document.getElementById('cd-mins');
+  const secs = document.getElementById('cd-secs');
+
+  function pad(n){return String(n).padStart(2,'0');}
+  function tick(el, val){
+    const newVal = String(val === days ? val : pad(val));
+    if(el.textContent !== newVal){
+      el.textContent = newVal;
+      el.classList.remove('tick');
+      void el.offsetWidth;
+      el.classList.add('tick');
+    }
+  }
+  function update(){
+    const now = new Date();
+    const diff = wedding - now;
+    if(diff <= 0){days.textContent='0';hours.textContent='00';mins.textContent='00';secs.textContent='00';return;}
+    const totalSecs = Math.floor(diff/1000);
+    const d = Math.floor(totalSecs/86400);
+    const h = Math.floor((totalSecs%86400)/3600);
+    const m = Math.floor((totalSecs%3600)/60);
+    const s = totalSecs%60;
+    if(days.textContent !== String(d)){days.textContent=d;days.classList.remove('tick');void days.offsetWidth;days.classList.add('tick');}
+    tick(hours,h);tick(mins,m);tick(secs,s);
+  }
+  update();
+  setInterval(update,1000);
+
+  const symbols=['✦','✧','☪','✨','◆','◇'];
+  const wrap=document.getElementById('particles');
+  for(let i=0;i<18;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    p.textContent=symbols[i%symbols.length];
+    p.style.left=(Math.random()*95)+'%';
+    p.style.animationDuration=(6+Math.random()*10)+'s';
+    p.style.animationDelay=(Math.random()*10)+'s';
+    p.style.fontSize=(9+Math.random()*8)+'px';
+    wrap.appendChild(p);
+  }
+})();
+</script>
+</body>
+</html>
